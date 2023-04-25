@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Home from './pages/Home';
 import Signup from './pages/Signup';
@@ -14,7 +14,9 @@ const App = () => {
   const { currentUser } = useSelector(state => state.user);
 
   useEffect(()=>{
-      dispatch(loadUser());
+      if(currentUser){
+        dispatch(loadUser());
+      }
   }, [dispatch])
 
   return <Router>
